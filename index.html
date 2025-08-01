@@ -4,323 +4,1277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Abhishek Tomar, Full-Stack Design Engineer">
-    <meta name="keywords" content="Abhishek Tomar, Portfolio, Full-Stack, Java, Web Development, Projects">
-    <meta name="author" content="Abhishek Tomar">
-    <title>Abhishek Tomar - Portfolio</title>
-
-    <!-- Font Awesome CDN for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <title>Portfolio | Abhishek Tomar - Full Stack Design Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset and base styles */
-        /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+        }
+
+        html {
             scroll-behavior: smooth;
         }
 
         body {
-            background-color: #0e101c;
-            color: #f4f4f4;
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #fff;
+            color: var(--dark-color);
         }
 
-        a {
-            text-decoration: none;
-            color: #00c9a7;
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
-        a:hover {
-            color: #00ffe5;
-        }
-
-        header {
-            text-align: center;
-            padding: 2rem 1rem;
-            background: linear-gradient(135deg, #1a1c29, #252836);
-        }
-
-        header img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 3px solid #00c9a7;
-            margin-bottom: 1rem;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin: 0.5rem 0;
-            color: #ffffff;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            color: #ccc;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            background-color: #1f2235;
-            padding: 1rem;
-            gap: 1rem;
-        }
-
-        nav a {
-            padding: 0.5rem 1rem;
-            background-color: #2a2d41;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-        }
-
-        nav a:hover {
-            background-color: #00c9a7;
-            color: #000;
-        }
-
-        .section {
-            padding: 3rem 1rem;
-            max-width: 1000px;
-            margin: auto;
-        }
-
-        .section h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #00c9a7;
-            display: inline-block;
-            padding-bottom: 0.3rem;
-        }
-
-        .section ul {
-            margin-left: 1.5rem;
-            list-style-type: disc;
-        }
-
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
         }
 
         .project-card {
-            background-color: #1f2235;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 201, 167, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backface-visibility: hidden;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(0, 255, 229, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .project-card h3 {
-            color: #00ffe5;
-            margin-bottom: 0.5rem;
+        .skill-item {
+            transition: transform 0.3s ease;
         }
 
-        .social-icons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1rem;
+        .skill-item:hover {
+            transform: scale(1.05);
         }
 
-        .social-icons a {
-            font-size: 1.5rem;
-            color: #00c9a7;
-            transition: color 0.3s;
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
         }
 
-        .social-icons a:hover {
-            color: #00ffe5;
+        .mobile-menu.open {
+            transform: translateX(0);
         }
 
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: #1f2235;
-            margin-top: 2rem;
-            color: #888;
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--primary-color);
         }
 
-        footer a {
-            color: #00c9a7;
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .animated-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-in {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 
-<body>
-    <header>
-        <img src="AbhishekTomar.jpg" alt="Abhishek Tomar">
-        <h1>Abhishek Tomar</h1>
-        <p>AI Engineer | AI/ML Specialist | Innovator</p>
+<body class="antialiased">
+    <!-- Navigation -->
+    <header class="fixed w-full z-50 bg-white shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#home" class="text-2xl font-bold gradient-text">Abhishek Tomar</a>
+                <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                    <i class="fas fa-bars text-gray-700 text-xl"></i>
+                </button>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home"
+                        class="nav-link relative text-gray-700 hover:text-gray-900 transition duration-300">Home</a>
+                    <a href="#about"
+                        class="nav-link relative text-gray-700 hover:text-gray-900 transition duration-300">About</a>
+                    <a href="#skills"
+                        class="nav-link relative text-gray-700 hover:text-gray-900 transition duration-300">Skills</a>
+                    <a href="#projects"
+                        class="nav-link relative text-gray-700 hover:text-gray-900 transition duration-300">Projects</a>
+                    <a href="#experience"
+                        class="nav-link relative text-gray-700 hover:text-gray-900 transition duration-300">Experience</a>
+                    <a href="#contact"
+                        class="nav-link relative text-gray-700 hover:text-gray-900 transition duration-300">Contact</a>
+                </nav>
+            </div>
+        </div>
     </header>
 
-    <nav>
-        <a href="#about">About Me</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#education">Education</a>
-        <a href="#certifications">Certifications</a>
-        <a href="#blogs">Blogs</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="mobile-menu fixed inset-0 bg-white z-40 flex flex-col items-center justify-center space-y-10 transition-transform duration-300 ease-in-out">
+        <button id="close-menu-button" class="absolute top-6 right-6 text-gray-700">
+            <i class="fas fa-times text-2xl"></i>
+        </button>
+        <a href="#home" class="text-2xl font-medium text-gray-800">Home</a>
+        <a href="#about" class="text-2xl font-medium text-gray-800">About</a>
+        <a href="#skills" class="text-2xl font-medium text-gray-800">Skills</a>
+        <a href="#projects" class="text-2xl font-medium text-gray-800">Projects</a>
+        <a href="#experience" class="text-2xl font-medium text-gray-800">Experience</a>
+        <a href="#contact" class="text-2xl font-medium text-gray-800">Contact</a>
+    </div>
 
-    <main>
-        <section id="about" class="section">
-            <h2>About Me</h2>
-            <p>
-                Hello, I'm Abhishek Tomar, an AI/ML Engineer and Data Scientist passionate about building intelligent
-                systems to solve real-world problems. I specialize in developing advanced AI models, crafting scalable
-                full-stack solutions, and uncovering actionable insights from data to drive innovation and impact.
-            </p>
-        </section>
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-6">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0 animated-section">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                        Hi, I'm <span class="gradient-text">Abhishek Tomar</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-medium text-gray-600 mb-6">
+                        Full Stack Design Engineer
+                    </h2>
+                    <p class="text-gray-600 mb-8 max-w-lg">
+                        Building secure, intelligent web experiences — from pixel-perfect design to superhuman AI
+                        systems.
 
-        <section id="experience" class="section">
-            <h2>Experience</h2>
-            <p>
-                I have worked on various projects, including:
-            <ul>
-                <li>Developed AI/ML models for real-time data analysis and predictive analytics.</li>
-                <li>Collaborated with teams on developing scalable full-stack applications.</li>
-                <li>Worked on multiple research projects involving Natural Language Processing (NLP) and computer
-                    vision.</li>
-            </ul>
-            </p>
-        </section>
-
-        <section id="skills" class="section">
-            <h2>Skills</h2>
-            <p>
-                My technical skills include:
-            <ul>
-                <li>Programming Languages: Java, Python, JavaScript</li>
-                <li>AI/ML Frameworks: TensorFlow, Keras, Scikit-learn</li>
-                <li>Web Development: HTML, CSS, JavaScript, Bootstrap, React</li>
-                <li>Database Management: MySQL, PostgreSQL, MongoDB</li>
-                <li>Version Control: Git, GitHub</li>
-                <li>Cloud Platforms: AWS, Google Cloud</li>
-            </ul>
-            </p>
-        </section>
-
-        <section id="education" class="section">
-            <h2>Education</h2>
-            <p>
-                I am currently a second-year student at Galgotias University with a keen interest in exploring diverse
-                technology domains.
-                From software development to AI and Web3, I am continuously learning and working on projects to enhance
-                my skills.
-            </p>
-        </section>
-
-        <section id="certifications" class="section">
-            <h2>Certifications</h2>
-            <p>
-                I have earned several certifications, including:
-            <ul>
-                <li>Oracle Database Design - 2024</li>
-                <li>Machine Learning by Stanford University - Coursera</li>
-                <li>AI for Everyone by Andrew Ng - Coursera</li>
-            </ul>
-            </p>
-        </section>
-
-        <section id="blogs" class="section">
-            <h2>Blogs</h2>
-            <p>
-                I regularly write blogs on topics related to AI, Machine Learning, and Web Development. Here are some of
-                my latest blogs:
-            <ul>
-                <li><a
-                        href="https://medium.com/@abhishektomar972008695/flask-cheatsheet-for-beginners-key-tips-and-code-snippets-to-master-flask-0543a9a58c11">Flask
-                        Cheatsheet for Beginners: Key Tips and Code Snippets to Master Flask
-                    </a></li>
-                <li><a
-                        href="https://medium.com/@abhishektomar972008695/python-in-24-hours-step-by-step-guide-for-beginners-to-learn-python-fast-5250da0f4669">Python
-                        in 24 Hours: Step-by-Step Guide for Beginners to Learn Python Fast</a></li>
-                <li><a
-                        href="https://medium.com/@abhishektomar972008695/beginners-guide-to-programming-with-python-learn-python-basics-step-by-step-7454eed7cd03">What
-                        Is Programming? A Beginner’s Guide</a></li>
-                <li><a href="https://medium.com/@abhishektomar972008695/my-first-program-hello-world-50af54ce9339">My
-                        First Program: “Hello World”</a></li>
-                <li><a
-                        href="https://medium.com/@abhishektomar972008695/python-programming-for-beginners-a-complete-introduction-2025-guide-72fc7be13af9">Programming
-                        for Data Science Beginners with Python</a></li>
-            </ul>
-            </p>
-        </section>
-
-        <section id="projects" class="section">
-            <h2>Projects</h2>
-            <div class="projects">
-                <div class="project-card">
-                    <h3>Real Estate Price Prediction</h3>
-                    <p>Developed a Python-based model to predict property prices using machine learning algorithms,
-                        leveraging features like location, size, and amenities for accurate valuation.</p>
-                    <a href="https://github.com/Abhishek-09-Tomar/AI-ML-NLP-LLM.git">View on GitHub</a>
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#projects"
+                            class="gradient-bg text-white px-6 py-3 rounded-lg font-medium shadow-lg hover:shadow-xl transition duration-300">
+                            View My Work
+                        </a>
+                        <a href="#contact"
+                            class="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition duration-300">
+                            Contact Me
+                        </a>
+                    </div>
                 </div>
-                <div class="project-card">
-                    <h3>Spam Email Detection</h3>
-                    <p>Built a Python project using Natural Language Processing (NLP) techniques and machine learning to
-                        classify emails as spam or legitimate, enhancing email filtering efficiency.</p>
-                    <a href="https://github.com/Abhishek-09-Tomar/AI-ML-NLP-LLM.git">View on GitHub</a>
+
+                <!-- simple image placing -->
+                <!-- <div class="md:w-1/2 flex justify-center animated-section">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden">
+                        <img src="abhishek.jpg"
+                            alt="Professional portrait of Abhishek Tomar with a friendly expression wearing business casual attire"
+                            class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-20"></div>
+                    </div>
+                </div> -->
+
+                <!-- image placing with the glowing and background effect -->
+                <div class="md:w-1/2 flex justify-center animated-section">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full p-2" style="background: radial-gradient(circle, #c7d2fe 0%, #f8fafc 90%);
+                                box-shadow: 0 0 80px 20px rgba(139, 92, 246, 0.35);">
+                        <img src="abhishek.jpg" alt="Abhishek Tomar" class="w-full h-full object-cover rounded-full">
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact" class="section">
-            <h2>Contact</h2>
-            <p>Let's connect through social media!</p>
-
-            <!-- Social Media Icons with Links -->
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/abhishek-tomar-7aa29127b" target="_blank" title="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://github.com/Abhishek-09-Tomar" target="_blank" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.youtube.com/@i_am_abhishek_tomar" target="_blank" title="YouTube">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="https://www.instagram.com/wanderwithabhishekk/" target="_blank" title="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.facebook.com/AbhishekTomarG9?mibextid=ZbWKwL" target="_blank" title="Facebook">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://discord.gg/kKB58U5r" target="_blank" title="Discord">
-                    <i class="fab fa-discord"></i>
-                </a>
-                <a href="https://x.com/AbhishekTo70974?t=NOTCtARgFdDa5ge1b_3CmQ&s=08" target="_blank" title="Twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://www.t.me/KChaudharyAbhishekChaudhary" target="_blank" title="Telegram">
-                    <i class="fab fa-telegram"></i>
-                </a>
-                <a href="mailto:abhishek9720086@gmail.com" target="_blank" title="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 bg-gray-50">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 animated-section">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">About Me</span></h2>
+                <div class="w-20 h-1 gradient-bg mx-auto mb-8"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Crafting the future of technology through secure, intelligent, and emotionally aware digital
+                    experiences — where
+                    full-stack development, design precision, and next-gen AI converge to solve real-world problems with
+                    purpose.
+                </p>
             </div>
-        </section>
-    </main>
 
-    <footer>
-        <p>© 2024 Abhishek Tomar | <a href="#contact">Contact Me</a></p>
+            <div class="flex flex-col md:flex-row items-center animated-section">
+                <div class="md:w-1/2 mb-10 md:mb-0 flex justify-center">
+                    <div class="relative rounded-lg overflow-hidden shadow-xl">
+                        <img src="aboutme1.jpg"
+                            alt="Abhishek Tomar working at a desk with multiple monitors showing code and design tools"
+                            class="w-full h-auto">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-30"></div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h3 class="text-2xl font-bold mb-4">Who Am I</h3>
+                    <p class="text-gray-600 mb-6">
+                        I’m a Full-Stack Design Engineer passionate about building secure, scalable, and
+                        high-performance web applications that
+                        seamlessly integrate advanced AI. From intuitive frontends to robust backend systems, I craft
+                        end-to-end digital
+                        experiences powered by modern frameworks, machine learning, and agentic architectures. My work
+                        bridges the gap between
+                        design and engineering — driving innovation in autonomous systems, AGI-inspired intelligence,
+                        and next-gen user
+                        experiences.
+                    </p>
+                    <div class="mb-6">
+                        <div class="flex items-center mb-2">
+                            <div
+                                class="gradient-bg w-8 h-8 rounded-full flex items-center justify-center text-white mr-4">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <p class="text-gray-600">India, Greater Noida</p>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <div
+                                class="gradient-bg w-8 h-8 rounded-full flex items-center justify-center text-white mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <p class="text-gray-600">abhishek9720086@gmail.com</p>
+                        </div>
+                        <div class="flex items-center">
+                            <div
+                                class="gradient-bg w-8 h-8 rounded-full flex items-center justify-center text-white mr-4">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <p class="text-gray-600">Available for freelance & full-time</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/Abhishek-09-Tomar" target="_blank"
+                                class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:bg-gray-200 transition duration-300">
+                                <i class="fab fa-github"></i>
+
+                            </a>
+                            <a href="https://www.linkedin.com/in/abhishek-tomar-7aa29127b/" target="_blank"
+                                class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:bg-gray-200 transition duration-300">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://x.com/AbhishekTo70974"
+                                class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:bg-gray-200 transition duration-300">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:bg-gray-200 transition duration-300">
+                                <i class="fab fa-dribbble"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 animated-section">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">My Skills</span></h2>
+                <div class="w-20 h-1 gradient-bg mx-auto mb-8"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    The technologies and tools I work with to create exceptional digital experiences.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <div
+                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                        <i class="fab fa-react text-2xl"></i>
+                    </div>
+                    <h3 class="text-center font-medium mb-2">React</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="gradient-bg h-2 rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                        <i class="fab fa-js text-2xl"></i>
+                    </div>
+                    <h3 class="text-center font-medium mb-2">JavaScript</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="gradient-bg h-2 rounded-full" style="width: 95%"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                        <i class="fab fa-node-js text-2xl"></i>
+                    </div>
+                    <h3 class="text-center font-medium mb-2">Node.js</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="gradient-bg h-2 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                        <i class="fas fa-database text-2xl"></i>
+                    </div>
+                    <h3 class="text-center font-medium mb-2">MongoDB</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="gradient-bg h-2 rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                        <i class="fab fa-python text-2xl"></i>
+                    </div>
+                    <h3 class="text-center font-medium mb-2">Python</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="gradient-bg h-2 rounded-full" style="width: 75%"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                        <i class="fas fa-server text-2xl"></i>
+                    </div>
+                    <h3 class="text-center font-medium mb-2">AWS</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="gradient-bg h-2 rounded-full" style="width: 70%"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                        <i class="fab fa-git-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-center font-medium mb-2">Git</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="gradient-bg h-2 rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                        <i class="fab fa-figma text-2xl"></i>
+                    </div>
+                    <h3 class="text-center font-medium mb-2">Figma</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="gradient-bg h-2 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                        <i class="fas fa-mobile-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-center font-medium mb-2">Flutter</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="gradient-bg h-2 rounded-full" style="width: 70%"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                        <i class="fas fa-code text-2xl"></i>
+                    </div>
+                    <h3 class="text-center font-medium mb-2">GraphQL</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="gradient-bg h-2 rounded-full" style="width: 75%"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                        <i class="fab fa-linux text-2xl"></i>
+                    </div>
+                    <h3 class="text-center font-medium mb-2">Linux</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="gradient-bg h-2 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                        <i class="fas fa-network-wired text-2xl"></i>
+                    </div>
+                    <h3 class="text-center font-medium mb-2">Wireshark</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="gradient-bg h-2 rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-center font-medium mb-2">SELinux</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="gradient-bg h-2 rounded-full" style="width: 70%"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                        <i class="fas fa-bug text-2xl"></i>
+                    </div>
+                    <h3 class="text-center font-medium mb-2">Metasploit Framework</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="gradient-bg h-2 rounded-full" style="width: 75%"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                        <i class="fas fa-eye text-2xl"></i>
+                    </div>
+                    <h3 class="text-center font-medium mb-2">Snort</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="gradient-bg h-2 rounded-full" style="width: 70%"></div>
+                    </div>
+                </div>
+
+                <div
+                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+                    <div
+                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                        <i class="fas fa-robot text-2xl"></i>
+                    </div>
+                    <h3 class="text-center font-medium mb-2">SuperAGI</h3>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="gradient-bg h-2 rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6 bg-gray-50">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 animated-section">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">My Projects</span></h2>
+                <div class="w-20 h-1 gradient-bg mx-auto mb-8"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    A selection of my recent work showcasing my skills and expertise.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md animated-section">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="EvergreenEstate.jpg" alt="Evergreen Estate – Real Estate Price Prediction"
+                            class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex space-x-2 mb-3">
+                            <span class="text-sm px-2 py-1 bg-blue-100 text-blue-800 rounded">Machine Learning</span>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded">Regression</span>
+                            <span class="text-sm px-2 py-1 bg-gray-100 text-gray-800 rounded">Real Estate</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Evergreen Estate</h3>
+                        <p class="text-gray-600 mb-4">A real estate price prediction project powered by machine learning
+                            algorithms.
+                            It analyzes historical housing data to predict property prices for smarter investment
+                            decisions.
+                        </p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
+                            <a href="https://github.com/Abhishek-09-Tomar/Data-Science-with-AI-and-ML.git"
+                                target="_blank" class="text-sm gradient-text font-medium">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md animated-section">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="FakeNewsDetection.jpg" alt="Fake News Detection – NLP & ML Powered Classifier"
+                            class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex space-x-2 mb-3">
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">NLP</span>
+                            <span class="text-sm px-2 py-1 bg-blue-100 text-blue-800 rounded">Machine Learning</span>
+                            <span class="text-sm px-2 py-1 bg-red-100 text-red-800 rounded">Classification</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Fake News Detection</h3>
+                        <p class="text-gray-600 mb-4">
+                            A machine learning project leveraging NLP techniques to classify fake news using scikit-learn.
+                            Built with Python, trained on the LIAR dataset to identify misinformation from real statements.
+                        </p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
+                            <a href="https://github.com/Abhishek-09-Tomar/Data-Science-with-AI-and-ML.git" target="_blank"
+                                class="text-sm gradient-text font-medium">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md animated-section">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="SpamMailDetection.jpg" alt="Spam Mail Detection – Email Classifier using ML"
+                            class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex space-x-2 mb-3">
+                            <span class="text-sm px-2 py-1 bg-purple-100 text-purple-800 rounded">Python</span>
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">NLP</span>
+                            <span class="text-sm px-2 py-1 bg-blue-100 text-blue-800 rounded">Naive Bayes</span>
+                            <span class="text-sm px-2 py-1 bg-red-100 text-red-800 rounded">Spam Detection</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Spam Mail Detection</h3>
+                        <p class="text-gray-600 mb-4">
+                            A machine learning-based spam email classifier built with Python. Utilizes natural language processing and
+                            Naive Bayes algorithm to detect and filter spam messages from legitimate emails.
+                        </p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
+                            <a href="https://github.com/Abhishek-09-Tomar/Data-Science-with-AI-and-ML.git" target="_blank"
+                                class="text-sm gradient-text font-medium">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md animated-section">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="LibraryManagementSystem.jpg" alt="Library Management System using Java"
+                            class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex space-x-2 mb-3">
+                            <span class="text-sm px-2 py-1 bg-red-100 text-red-800 rounded">Java</span>
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">Maven</span>
+                            <span class="text-sm px-2 py-1 bg-blue-100 text-blue-800 rounded">MySQL</span>
+                            <span class="text-sm px-2 py-1 bg-indigo-100 text-indigo-800 rounded">HTML/CSS/JS</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Library Management System</h3>
+                        <p class="text-gray-600 mb-4">A full-stack Java-based Library Management System integrating a responsive
+                            frontend
+                            (HTML, CSS, JS, Bootstrap) with secure MySQL backend and Maven for build automation. Includes features like
+                            user login, book/member management, and insightful reports.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
+                            <a href="https://github.com/Abhishek-09-Tomar/Library-Mangement-System-Using-Java.git" target="_blank"
+                                class="text-sm gradient-text font-medium">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md animated-section">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="E-Commerce Dashboard.jpg"
+                            alt="E-commerce dashboard interface with analytics charts and product listings"
+                            class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex space-x-2 mb-3">
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">Coming Soon</span>
+                            <span class="text-sm px-2 py-1 bg-blue-100 text-blue-800 rounded">React</span>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded">Node.js</span>
+                            <span class="text-sm px-2 py-1 bg-purple-100 text-purple-800 rounded">MongoDB</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">E-Commerce Dashboard</h3>
+                        <p class="text-gray-600 mb-4">A modern admin dashboard for e-commerce businesses with real-time
+                            analytics and inventory management.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
+                            <a href="#" class="text-sm gradient-text font-medium">Source Code</a>
+                        </div>
+                        <div class="flex space-x-3">
+                            <span class="text-sm text-gray-400 italic">Launching Soon...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md animated-section">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="Travel Planner App.jpg"
+                            alt="Travel planning application with interactive maps and destination cards"
+                            class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex space-x-2 mb-3">
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">Coming Soon</span>
+                            <span class="text-sm px-2 py-1 bg-blue-100 text-blue-800 rounded">React</span>
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">Firebase</span>
+                            <span class="text-sm px-2 py-1 bg-red-100 text-red-800 rounded">Google Maps API</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Travel Planner App</h3>
+                        <p class="text-gray-600 mb-4">An interactive travel planning application that helps users
+                            discover and organize their trip itineraries.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
+                            <a href="#" class="text-sm gradient-text font-medium">Source Code</a>
+                        </div>
+                        <div class="flex space-x-3">
+                            <span class="text-sm text-gray-400 italic">Launching Soon...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md animated-section">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="Fitness Tracker.jpg"
+                            alt="Health and fitness tracking mobile application UI with workout statistics"
+                            class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex space-x-2 mb-3">
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">Coming Soon</span>
+                            <span class="text-sm px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Flutter</span>
+                            <span class="text-sm px-2 py-1 bg-blue-100 text-blue-800 rounded">Dart</span>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded">SQLite</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Fitness Tracker</h3>
+                        <p class="text-gray-600 mb-4">A cross-platform mobile app for tracking workouts, nutrition, and
+                            health metrics with personalized insights.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm gradient-text font-medium">App Store</a>
+                            <a href="#" class="text-sm gradient-text font-medium">Play Store</a>
+                        </div>
+                        <div class="flex space-x-3">
+                            <span class="text-sm text-gray-400 italic">Launching Soon...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md animated-section">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="Social Media Dashboard.jpg"
+                            alt="Social media analytics dashboard with graphs and engagement metrics"
+                            class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex space-x-2 mb-3">
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">Coming Soon</span>
+                            <span class="text-sm px-2 py-1 bg-blue-100 text-blue-800 rounded">Vue.js</span>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded">Python</span>
+                            <span class="text-sm px-2 py-1 bg-pink-100 text-pink-800 rounded">Django</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Social Media Dashboard</h3>
+                        <p class="text-gray-600 mb-4">Comprehensive social media management tool with scheduling,
+                            analytics, and engagement tracking.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
+                            <a href="#" class="text-sm gradient-text font-medium">Case Study</a>
+                        </div>
+                        <div class="flex space-x-3">
+                            <span class="text-sm text-gray-400 italic">Launching Soon...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md animated-section">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="Task Management App.jpg"
+                            alt="Task management application interface with drag-and-drop functionality"
+                            class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex space-x-2 mb-3">
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">Coming Soon</span>
+                            <span class="text-sm px-2 py-1 bg-blue-100 text-blue-800 rounded">React</span>
+                            <span class="text-sm px-2 py-1 bg-gray-100 text-gray-800 rounded">Redux</span>
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">Firebase</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Task Management App</h3>
+                        <p class="text-gray-600 mb-4">A Kanban-style task management application with real-time
+                            collaboration features.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
+                            <a href="#" class="text-sm gradient-text font-medium">Source Code</a>
+                        </div>
+                        <div class="flex space-x-3">
+                            <span class="text-sm text-gray-400 italic">Launching Soon...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md animated-section">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="Food Delivery App.jpg"
+                            alt="Food delivery mobile application interface with restaurant listings"
+                            class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex space-x-2 mb-3">
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">Coming Soon</span>
+                            <span class="text-sm px-2 py-1 bg-blue-100 text-blue-800 rounded">React Native</span>
+                            <span class="text-sm px-2 py-1 bg-red-100 text-red-800 rounded">Expo</span>
+                            <span class="text-sm px-2 py-1 bg-purple-100 text-purple-800 rounded">GraphQL</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Food Delivery App</h3>
+                        <p class="text-gray-600 mb-4">A mobile app connecting users with local restaurants and
+                            facilitating food ordering and delivery.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm gradient-text font-medium">App Store</a>
+                            <a href="#" class="text-sm gradient-text font-medium">Case Study</a>
+                        </div>
+                        <div class="flex space-x-3">
+                            <span class="text-sm text-gray-400 italic">Launching Soon...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md animated-section">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="Super-AGI-1.jpg" alt="Upcoming AI-based project teaser visual"
+                            class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex space-x-2 mb-3">
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">Coming Soon</span>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded">AI/ML</span>
+                            <span class="text-sm px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Cybersecurity</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">SuperAGI-Powered Agent</h3>
+                        <p class="text-gray-600 mb-4">A future-ready AI agent system blending SuperAGI and
+                            cybersecurity, aimed at
+                            autonomous decision-making and intelligent task execution.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
+                            <a href="#" class="text-sm gradient-text font-medium">Source Code</a>
+                        </div>
+                        <div class="flex space-x-3">
+                            <span class="text-sm text-gray-400 italic">Launching Soon...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md animated-section">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="AetheraAI.jpg" alt="Aethera AI – Emotionally intelligent virtual companion"
+                            class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex space-x-2 mb-3">
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">Coming Soon</span>
+                            <span class="text-sm px-2 py-1 bg-pink-100 text-pink-800 rounded">Emotional AI</span>
+                            <span class="text-sm px-2 py-1 bg-blue-100 text-blue-800 rounded">Personal Growth</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Aethera AI</h3>
+                        <p class="text-gray-600 mb-4">An emotionally intelligent AI companion that evolves with you —
+                            offering
+                            empathetic support and personalized roadmaps across emotional, mental, physical, and
+                            financial well-being.
+                        </p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
+                            <a href="#" class="text-sm gradient-text font-medium">Source Code</a>
+                        </div>
+                        <div class="flex space-x-3">
+                            <span class="text-sm text-gray-400 italic">Launching Soon...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md animated-section">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="SentinelAI.jpg" alt="SentinelAI – Autonomous Cyber Defense System"
+                            class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex space-x-2 mb-3">
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">Coming Soon</span>
+                            <span class="text-sm px-2 py-1 bg-red-100 text-red-800 rounded">Cybersecurity</span>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded">AI/ML</span>
+                            <span class="text-sm px-2 py-1 bg-gray-100 text-gray-800 rounded">OSINT</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">SentinelAI</h3>
+                        <p class="text-gray-600 mb-4">An autonomous AI-driven system to detect, analyze, and respond to
+                            cyberattacks in
+                            real time using OSINT, ML, and automation — built for next-gen digital defense.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
+                            <a href="#" class="text-sm gradient-text font-medium">Source Code</a>
+                        </div>
+                        <div class="flex space-x-3">
+                            <span class="text-sm text-gray-400 italic">Launching Soon...</span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-6">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 animated-section">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">My Journey</span></h2>
+                <div class="w-20 h-1 gradient-bg mx-auto mb-8"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    My professional timeline showcasing my education and work experience.
+                </p>
+            </div>
+
+            <div class="relative">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Education -->
+                    <div class="animated-section">
+                        <h3 class="text-2xl font-bold mb-6 text-center md:text-left">Education</h3>
+                        <!-- <div class="space-y-8 relative">
+                            <div class="timeline-item pl-8 relative">
+                                <div class="absolute left-0 top-0 w-4 h-4 gradient-bg rounded-full ml-2"></div>
+                                <div class="bg-white p-6 rounded-lg shadow-sm">
+                                    <h4 class="font-bold mb-1">Master's in Computer Science</h4>
+                                    <p class="text-gray-600 mb-2">Stanford University</p>
+                                    <p class="text-sm text-gray-500">2016 - 2018</p>
+                                    <p class="text-gray-600 mt-2">Specialized in Artificial Intelligence and
+                                        Human-Computer Interaction.</p>
+                                </div>
+                            </div> -->
+
+                        <div class="timeline-item pl-8 relative">
+                            <div class="absolute left-0 top-0 w-4 h-4 gradient-bg rounded-full ml-2"></div>
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-bold mb-1">Bachelor of Technology</h4>
+                                <p class="text-gray-600 mb-2">Galgotias University, Greater Noida</p>
+                                <p class="text-sm text-gray-500">2023 - Present</p>
+                                <!-- <p class="text-gray-600 mt-2">Graduated with honors. Focused on web technologies and
+                                        software architecture.</p> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Schooling -->
+                    <div class="timeline-item pl-8 relative">
+                        <div class="absolute left-0 top-0 w-4 h-4 gradient-bg rounded-full ml-2"></div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <h4 class="font-bold mb-1">Senior Secondary Schooling</h4>
+                            <p class="text-gray-600 mb-2">Gurukul Public School, Khair(Aligarh)</p>
+                            <p class="text-sm text-gray-500">2021 - 2022</p>
+                            <!-- <p class="text-gray-600 mt-2">Developed responsive user interfaces and implemented
+                                    UX best practices.</p> -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Work Experience -->
+                <!-- <div class="animated-section">
+                        <h3 class="text-2xl font-bold mb-6 text-center md:text-left">Work Experience</h3>
+                        <div class="space-y-8 relative">
+                            <div class="timeline-item pl-8 relative">
+                                <div class="absolute left-0 top-0 w-4 h-4 gradient-bg rounded-full ml-2"></div>
+                                <div class="bg-white p-6 rounded-lg shadow-sm">
+                                    <h4 class="font-bold mb-1">Senior Full Stack Developer</h4>
+                                    <p class="text-gray-600 mb-2">Tech Innovations Inc.</p>
+                                    <p class="text-sm text-gray-500">2020 - Present</p>
+                                    <p class="text-gray-600 mt-2">Lead developer responsible for architecting and
+                                        implementing scalable web applications.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item pl-8 relative">
+                                <div class="absolute left-0 top-0 w-4 h-4 gradient-bg rounded-full ml-2"></div>
+                                <div class="bg-white p-6 rounded-lg shadow-sm">
+                                    <h4 class="font-bold mb-1">Frontend Developer</h4>
+                                    <p class="text-gray-600 mb-2">Digital Solutions Co.</p>
+                                    <p class="text-sm text-gray-500">2018 - 2020</p>
+                                    <p class="text-gray-600 mt-2">Developed responsive user interfaces and implemented
+                                        UX best practices.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item pl-8 relative">
+                                <div class="absolute left-0 top-0 w-4 h-4 gradient-bg rounded-full ml-2"></div>
+                                <div class="bg-white p-6 rounded-lg shadow-sm">
+                                    <h4 class="font-bold mb-1">Junior Web Developer</h4>
+                                    <p class="text-gray-600 mb-2">Webcraft Studios</p>
+                                    <p class="text-sm text-gray-500">2016 - 2018</p>
+                                    <p class="text-gray-600 mt-2">Implemented client websites with HTML, CSS, and
+                                        JavaScript.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <!-- <section class="py-20 px-6 bg-gray-50">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 animated-section">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">Client Testimonials</span>
+                </h2>
+                <div class="w-20 h-1 gradient-bg mx-auto mb-8"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    What people I've worked with say about my work and professionalism.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-sm animated-section">
+                    <div class="flex mb-4">
+                        <div class="text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "Alex delivered our project ahead of schedule and exceeded our expectations. His attention to
+                        detail and problem-solving skills are exceptional."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://placehold.co/100x100"
+                                alt="Sarah Johnson, Head of Product at TechStart Inc."
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Sarah Johnson</h4>
+                            <p class="text-gray-600 text-sm">Head of Product, TechStart Inc.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-sm animated-section">
+                    <div class="flex mb-4">
+                        <div class="text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "Working with Alex was a pleasure. He understood our business needs clearly and translated them
+                        into a perfect digital solution."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://placehold.co/100x100" alt="Michael Chen, CEO of Digital Innovations"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Michael Chen</h4>
+                            <p class="text-gray-600 text-sm">CEO, Digital Innovations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-sm animated-section">
+                    <div class="flex mb-4">
+                        <div class="text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "The project was complex, but Alex managed to deliver an elegant solution that our users love.
+                        Highly recommended!"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://placehold.co/100x100" alt="Emily Rodriguez, CTO of NexTech Solutions"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Emily Rodriguez</h4>
+                            <p class="text-gray-600 text-sm">CTO, NexTech Solutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6">
+        <div class="container mx-auto">
+            <div class="text-center mb-16 animated-section">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">Get In Touch</span></h2>
+                <div class="w-20 h-1 gradient-bg mx-auto mb-8"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Have a project in mind or want to discuss potential opportunities? I'd love to hear from you.
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2 bg-white p-8 rounded-lg shadow-sm animated-section">
+                    <form id="contact-form">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+                            <input type="text" id="name"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                required>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                            <input type="email" id="email"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                required>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                            <input type="text" id="subject"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                required>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" rows="5"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                required></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="gradient-bg text-white px-6 py-3 rounded-lg font-medium shadow-lg hover:shadow-xl transition duration-300 w-full">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <div class="md:w-1/2 animated-section">
+                    <div class="bg-white p-8 rounded-lg shadow-sm mb-8">
+                        <h3 class="text-xl font-bold mb-4">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div
+                                    class="gradient-bg w-10 h-10 rounded-full flex items-center justify-center text-white mr-4">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Location</h4>
+                                    <p class="text-gray-600">Greater Noida, Gautam Buddha Nagar</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div
+                                    class="gradient-bg w-10 h-10 rounded-full flex items-center justify-center text-white mr-4">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Email</h4>
+                                    <p class="text-gray-600">abhishek9720086@gmail.com</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div
+                                    class="gradient-bg w-10 h-10 rounded-full flex items-center justify-center text-white mr-4">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Phone</h4>
+                                    <p class="text-gray-600">+919720086959</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold mb-4">Follow Me</h3>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/Abhishek-09-Tomar?tab=repositories"
+                                class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:text-white hover:bg-blue-600 transition duration-300">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/abhishek-tomar-7aa29127b/"
+                                class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:text-white hover:bg-blue-500 transition duration-300">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+                            <a href="https://x.com/AbhishekTo70974"
+                                class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:text-white hover:bg-blue-400 transition duration-300">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="https://discord.com/invite/bNfDcN2t"
+                                class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:text-white hover:bg-pink-500 transition duration-300">
+                                <i class="fab fa-dribbble text-xl"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@i_am_abhishek_tomar"
+                                class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:text-white hover:bg-red-500 transition duration-300">
+                                <i class="fab fa-youtube text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 gradient-bg text-white">
+        <div class="container mx-auto">
+            <div class="text-center">
+                <a href="#" class="text-2xl font-bold mb-4 inline-block">Portfolio</a>
+                <p class="mb-8 max-w-2xl mx-auto">
+                    Creating digital experiences that matter - one line of code at a time.
+                </p>
+
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="https://github.com/Abhishek-09-Tomar"
+                        class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition duration-300">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/abhishek-tomar-7aa29127b/"
+                        class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition duration-300">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://x.com/AbhishekTo70974"
+                        class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://discord.com/invite/bNfDcN2t"
+                        class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition duration-300">
+                        <i class="fab fa-dribbble"></i>
+                    </a>
+                </div>
+
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="#home" class="hover:underline">Home</a>
+                    <a href="#about" class="hover:underline">About</a>
+                    <a href="#skills" class="hover:underline">Skills</a>
+                    <a href="#projects" class="hover:underline">Projects</a>
+                    <a href="#experience" class="hover:underline">Experience</a>
+                    <a href="#contact" class="hover:underline">Contact</a>
+                </div>
+
+                <p class="text-sm">
+                    © 2025 My Portfolio. All rights reserved.
+                </p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+        });
+
+        closeMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // Close mobile menu if open
+                mobileMenu.classList.remove('open');
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            // Here you would typically send the form data to a server
+            console.log('Form submitted:', { name, email, subject, message });
+
+            // Show success message
+            alert('Thank you for your message! I will get back to you soon.');
+
+            // Reset form
+            contactForm.reset();
+        });
+
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animated-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Dark mode toggle (can be implemented with localStorage)
+        // This is just a placeholder functionality
+        const darkModeToggle = document.createElement('button');
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        darkModeToggle.className = 'fixed bottom-6 right-6 w-12 h-12 rounded-full gradient-bg text-white flex items-center justify-center shadow-xl z-50';
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+        });
+
+        document.body.appendChild(darkModeToggle);
+    </script>
 </body>
 
 </html>
