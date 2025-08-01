@@ -1,0 +1,328 @@
+<!-- This is my old portfolio website and i'm launching a new one and replce that on 1 August 2025, Friday.-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Abhishek Tomar, Full-Stack Design Engineer">
+    <meta name="keywords" content="Abhishek Tomar, Portfolio, Full-Stack, Java, Web Development, Projects">
+    <meta name="author" content="Abhishek Tomar">
+    <title>Abhishek Tomar - Portfolio</title>
+
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Reset and base styles */
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #0e101c;
+            color: #f4f4f4;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: #00c9a7;
+        }
+
+        a:hover {
+            color: #00ffe5;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: linear-gradient(135deg, #1a1c29, #252836);
+        }
+
+        header img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #00c9a7;
+            margin-bottom: 1rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0.5rem 0;
+            color: #ffffff;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            background-color: #1f2235;
+            padding: 1rem;
+            gap: 1rem;
+        }
+
+        nav a {
+            padding: 0.5rem 1rem;
+            background-color: #2a2d41;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #00c9a7;
+            color: #000;
+        }
+
+        .section {
+            padding: 3rem 1rem;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #00c9a7;
+            display: inline-block;
+            padding-bottom: 0.3rem;
+        }
+
+        .section ul {
+            margin-left: 1.5rem;
+            list-style-type: disc;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background-color: #1f2235;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 201, 167, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 255, 229, 0.3);
+        }
+
+        .project-card h3 {
+            color: #00ffe5;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+            color: #00c9a7;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #00ffe5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #1f2235;
+            margin-top: 2rem;
+            color: #888;
+        }
+
+        footer a {
+            color: #00c9a7;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="AbhishekTomar.jpg" alt="Abhishek Tomar">
+        <h1>Abhishek Tomar</h1>
+        <p>AI Engineer | AI/ML Specialist | Innovator</p>
+    </header>
+
+    <nav>
+        <a href="#about">About Me</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#blogs">Blogs</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <main>
+        <section id="about" class="section">
+            <h2>About Me</h2>
+            <p>
+                Hello, I'm Abhishek Tomar, an AI/ML Engineer and Data Scientist passionate about building intelligent
+                systems to solve real-world problems. I specialize in developing advanced AI models, crafting scalable
+                full-stack solutions, and uncovering actionable insights from data to drive innovation and impact.
+            </p>
+        </section>
+
+        <section id="experience" class="section">
+            <h2>Experience</h2>
+            <p>
+                I have worked on various projects, including:
+            <ul>
+                <li>Developed AI/ML models for real-time data analysis and predictive analytics.</li>
+                <li>Collaborated with teams on developing scalable full-stack applications.</li>
+                <li>Worked on multiple research projects involving Natural Language Processing (NLP) and computer
+                    vision.</li>
+            </ul>
+            </p>
+        </section>
+
+        <section id="skills" class="section">
+            <h2>Skills</h2>
+            <p>
+                My technical skills include:
+            <ul>
+                <li>Programming Languages: Java, Python, JavaScript</li>
+                <li>AI/ML Frameworks: TensorFlow, Keras, Scikit-learn</li>
+                <li>Web Development: HTML, CSS, JavaScript, Bootstrap, React</li>
+                <li>Database Management: MySQL, PostgreSQL, MongoDB</li>
+                <li>Version Control: Git, GitHub</li>
+                <li>Cloud Platforms: AWS, Google Cloud</li>
+            </ul>
+            </p>
+        </section>
+
+        <section id="education" class="section">
+            <h2>Education</h2>
+            <p>
+                I am currently a second-year student at Galgotias University with a keen interest in exploring diverse
+                technology domains.
+                From software development to AI and Web3, I am continuously learning and working on projects to enhance
+                my skills.
+            </p>
+        </section>
+
+        <section id="certifications" class="section">
+            <h2>Certifications</h2>
+            <p>
+                I have earned several certifications, including:
+            <ul>
+                <li>Oracle Database Design - 2024</li>
+                <li>Machine Learning by Stanford University - Coursera</li>
+                <li>AI for Everyone by Andrew Ng - Coursera</li>
+            </ul>
+            </p>
+        </section>
+
+        <section id="blogs" class="section">
+            <h2>Blogs</h2>
+            <p>
+                I regularly write blogs on topics related to AI, Machine Learning, and Web Development. Here are some of
+                my latest blogs:
+            <ul>
+                <li><a
+                        href="https://medium.com/@abhishektomar972008695/flask-cheatsheet-for-beginners-key-tips-and-code-snippets-to-master-flask-0543a9a58c11">Flask
+                        Cheatsheet for Beginners: Key Tips and Code Snippets to Master Flask
+                    </a></li>
+                <li><a
+                        href="https://medium.com/@abhishektomar972008695/python-in-24-hours-step-by-step-guide-for-beginners-to-learn-python-fast-5250da0f4669">Python
+                        in 24 Hours: Step-by-Step Guide for Beginners to Learn Python Fast</a></li>
+                <li><a
+                        href="https://medium.com/@abhishektomar972008695/beginners-guide-to-programming-with-python-learn-python-basics-step-by-step-7454eed7cd03">What
+                        Is Programming? A Beginner’s Guide</a></li>
+                <li><a href="https://medium.com/@abhishektomar972008695/my-first-program-hello-world-50af54ce9339">My
+                        First Program: “Hello World”</a></li>
+                <li><a
+                        href="https://medium.com/@abhishektomar972008695/python-programming-for-beginners-a-complete-introduction-2025-guide-72fc7be13af9">Programming
+                        for Data Science Beginners with Python</a></li>
+            </ul>
+            </p>
+        </section>
+
+        <section id="projects" class="section">
+            <h2>Projects</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <h3>Real Estate Price Prediction</h3>
+                    <p>Developed a Python-based model to predict property prices using machine learning algorithms,
+                        leveraging features like location, size, and amenities for accurate valuation.</p>
+                    <a href="https://github.com/Abhishek-09-Tomar/AI-ML-NLP-LLM.git">View on GitHub</a>
+                </div>
+                <div class="project-card">
+                    <h3>Spam Email Detection</h3>
+                    <p>Built a Python project using Natural Language Processing (NLP) techniques and machine learning to
+                        classify emails as spam or legitimate, enhancing email filtering efficiency.</p>
+                    <a href="https://github.com/Abhishek-09-Tomar/AI-ML-NLP-LLM.git">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact</h2>
+            <p>Let's connect through social media!</p>
+
+            <!-- Social Media Icons with Links -->
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/abhishek-tomar-7aa29127b" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/Abhishek-09-Tomar" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.youtube.com/@i_am_abhishek_tomar" target="_blank" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.instagram.com/wanderwithabhishekk/" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/AbhishekTomarG9?mibextid=ZbWKwL" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://discord.gg/kKB58U5r" target="_blank" title="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="https://x.com/AbhishekTo70974?t=NOTCtARgFdDa5ge1b_3CmQ&s=08" target="_blank" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.t.me/KChaudharyAbhishekChaudhary" target="_blank" title="Telegram">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="mailto:abhishek9720086@gmail.com" target="_blank" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Abhishek Tomar | <a href="#contact">Contact Me</a></p>
+    </footer>
+</body>
+
+</html>
