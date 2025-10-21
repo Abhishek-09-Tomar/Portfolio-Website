@@ -21,19 +21,106 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #1C1F26; /* Carbon */
-            color: var(--dark-color);
+            background-color: #f8f9fa;
+            color: #212529;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        body.dark {
+            background-color: #121212;
+            color: #f1f1f1;
+        }
+
+        body.dark header {
+            background-color: #1a1a1a;
+            box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark nav a {
+            color: #e0e0e0;
+        }
+
+        body.dark nav a:hover {
+            color: #ffffff;
+        }
+
+        body.dark #mobile-menu {
+            background-color: #1a1a1a;
+        }
+
+        body.dark #mobile-menu a {
+            color: #e0e0e0;
+        }
+
+        body.dark .project-card,
+        body.dark .skill-item,
+        body.dark .bg-white {
+            background-color: #1e1e1e;
+            box-shadow: 0 1px 3px rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark .text-gray-600 {
+            color: #b0b0b0;
+        }
+
+        body.dark .text-gray-700 {
+            color: #d0d0d0;
+        }
+
+        body.dark .text-gray-800 {
+            color: #e0e0e0;
+        }
+
+        body.dark .border-gray-300 {
+            border-color: #3a3a3a;
+        }
+
+        body.dark .bg-gray-50 {
+            background-color: #0d0d0d;
+        }
+
+        body.dark .bg-gray-100 {
+            background-color: #2a2a2a;
+        }
+
+        body.dark input,
+        body.dark textarea {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+            border-color: #3a3a3a;
         }
 
         .gradient-text {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(45deg, #3a86ff, #8338ec);
+            -webkit-background-clip: text;
+            /* added for Chrome/Safari/Edge */
+            -moz-background-clip: text;
+            /* added for Firefox */
+            background-clip: text;
+            /* standard property */
+            -webkit-text-fill-color: transparent;
+            /* Chrome/Safari/Edge */
+            color: transparent;
+            /* fallback */
+            transition: background 0.5s ease;
+        }
+
+
+        body.dark .gradient-text {
+            background: linear-gradient(45deg, #ff6b6b, #f7b32b);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
         .gradient-bg {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, #3a86ff, #8338ec);
+            transition: background 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        body.dark .gradient-bg {
+            background: linear-gradient(135deg, #ff6b6b, #f7b32b);
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
         }
 
         .project-card {
@@ -46,12 +133,20 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
+        body.dark .project-card:hover {
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+        }
+
         .skill-item {
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .skill-item:hover {
             transform: scale(1.05);
+        }
+
+        body.dark .skill-item:hover {
+            box-shadow: 0 0 15px rgba(247, 179, 43, 0.5);
         }
 
         .mobile-menu {
@@ -70,7 +165,12 @@
             top: 0;
             height: 100%;
             width: 2px;
-            background: var(--primary-color);
+            background: #3a86ff;
+            transition: background 0.5s ease;
+        }
+
+        body.dark .timeline-item::before {
+            background: #f7b32b;
         }
 
         .nav-link::after {
@@ -80,12 +180,16 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary-color);
+            background: #3a86ff;
             transition: width 0.3s ease;
         }
 
         .nav-link:hover::after {
             width: 100%;
+        }
+
+        body.dark .nav-link::after {
+            background: #ff6b6b;
         }
 
         .animated-section {
@@ -97,6 +201,85 @@
         .animate-in {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #3a86ff, #8338ec);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 50;
+            transition: background 0.5s ease, box-shadow 0.5s ease;
+            border: none;
+        }
+
+        .dark-mode-toggle:hover {
+            background: linear-gradient(135deg, #8338ec, #3a86ff);
+            box-shadow: 0 0 15px rgba(58, 134, 255, 0.7);
+        }
+
+        body.dark .dark-mode-toggle {
+            background: linear-gradient(135deg, #ff6b6b, #f7b32b);
+            color: #212529;
+        }
+
+        body.dark .dark-mode-toggle:hover {
+            background: linear-gradient(135deg, #f7b32b, #ff6b6b);
+            box-shadow: 0 0 15px rgba(247, 179, 43, 0.7);
+        }
+
+        #mobile-menu-button {
+            color: #4a5568;
+        }
+
+        body.dark #mobile-menu-button {
+            color: #e0e0e0;
+        }
+
+        body.dark #close-menu-button {
+            color: #e0e0e0;
+        }
+
+        /* Footer links hover effect */
+        footer a {
+            position: relative;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        footer a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, #ff6ec4, #7873f5);
+            transition: width 0.3s ease;
+        }
+
+        footer a:hover::after {
+            width: 100%;
+        }
+
+        footer a:hover {
+            background: linear-gradient(90deg, #00f0ff, #ff4ec0, #9b59b6);
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
         }
     </style>
 </head>
@@ -261,11 +444,11 @@
                                 class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:bg-gray-200 transition duration-300">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-                            <a href="https://x.com/AbhishekTo70974"
+                            <a href="https://x.com/AbhishekTo70974" target="_blank"
                                 class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:bg-gray-200 transition duration-300">
                                 <i class="fab fa-twitter"></i>
                             </a>
-                            <a href="#"
+                            <a href="https://codolio.com/profile/iamagoodboy" target="_blank"
                                 class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:bg-gray-200 transition duration-300">
                                 <i class="fab fa-dribbble"></i>
                             </a>
@@ -277,212 +460,314 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 px-6">
-        <div class="container mx-auto">
-            <div class="text-center mb-16 animated-section">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">My Skills</span></h2>
-                <div class="w-20 h-1 gradient-bg mx-auto mb-8"></div>
-                <p class="text-gray-600 max-w-3xl mx-auto">
-                    The technologies and tools I work with to create exceptional digital experiences.
-                </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+        <!-- DESIGN SKILLS -->
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fab fa-figma text-2xl"></i>
             </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                <div
-                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
-                    <div
-                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                        <i class="fab fa-react text-2xl"></i>
-                    </div>
-                    <h3 class="text-center font-medium mb-2">React</h3>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="gradient-bg h-2 rounded-full" style="width: 90%"></div>
-                    </div>
-                </div>
-
-                <div
-                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
-                    <div
-                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                        <i class="fab fa-js text-2xl"></i>
-                    </div>
-                    <h3 class="text-center font-medium mb-2">JavaScript</h3>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="gradient-bg h-2 rounded-full" style="width: 95%"></div>
-                    </div>
-                </div>
-
-                <div
-                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
-                    <div
-                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                        <i class="fab fa-node-js text-2xl"></i>
-                    </div>
-                    <h3 class="text-center font-medium mb-2">Node.js</h3>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="gradient-bg h-2 rounded-full" style="width: 85%"></div>
-                    </div>
-                </div>
-
-                <div
-                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
-                    <div
-                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                        <i class="fas fa-database text-2xl"></i>
-                    </div>
-                    <h3 class="text-center font-medium mb-2">MongoDB</h3>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="gradient-bg h-2 rounded-full" style="width: 80%"></div>
-                    </div>
-                </div>
-
-                <div
-                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
-                    <div
-                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                        <i class="fab fa-python text-2xl"></i>
-                    </div>
-                    <h3 class="text-center font-medium mb-2">Python</h3>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="gradient-bg h-2 rounded-full" style="width: 75%"></div>
-                    </div>
-                </div>
-
-                <div
-                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
-                    <div
-                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                        <i class="fas fa-server text-2xl"></i>
-                    </div>
-                    <h3 class="text-center font-medium mb-2">AWS</h3>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="gradient-bg h-2 rounded-full" style="width: 70%"></div>
-                    </div>
-                </div>
-
-                <div
-                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
-                    <div
-                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                        <i class="fab fa-git-alt text-2xl"></i>
-                    </div>
-                    <h3 class="text-center font-medium mb-2">Git</h3>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="gradient-bg h-2 rounded-full" style="width: 90%"></div>
-                    </div>
-                </div>
-
-                <div
-                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
-                    <div
-                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                        <i class="fab fa-figma text-2xl"></i>
-                    </div>
-                    <h3 class="text-center font-medium mb-2">Figma</h3>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="gradient-bg h-2 rounded-full" style="width: 85%"></div>
-                    </div>
-                </div>
-
-                <div
-                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
-                    <div
-                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                        <i class="fas fa-mobile-alt text-2xl"></i>
-                    </div>
-                    <h3 class="text-center font-medium mb-2">Flutter</h3>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="gradient-bg h-2 rounded-full" style="width: 70%"></div>
-                    </div>
-                </div>
-
-                <div
-                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
-                    <div
-                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                        <i class="fas fa-code text-2xl"></i>
-                    </div>
-                    <h3 class="text-center font-medium mb-2">GraphQL</h3>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="gradient-bg h-2 rounded-full" style="width: 75%"></div>
-                    </div>
-                </div>
-
-                <div
-                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
-                    <div
-                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                        <i class="fab fa-linux text-2xl"></i>
-                    </div>
-                    <h3 class="text-center font-medium mb-2">Linux</h3>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="gradient-bg h-2 rounded-full" style="width: 85%"></div>
-                    </div>
-                </div>
-
-                <div
-                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
-                    <div
-                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                        <i class="fas fa-network-wired text-2xl"></i>
-                    </div>
-                    <h3 class="text-center font-medium mb-2">Wireshark</h3>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="gradient-bg h-2 rounded-full" style="width: 80%"></div>
-                    </div>
-                </div>
-
-                <div
-                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
-                    <div
-                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                        <i class="fas fa-shield-alt text-2xl"></i>
-                    </div>
-                    <h3 class="text-center font-medium mb-2">SELinux</h3>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="gradient-bg h-2 rounded-full" style="width: 70%"></div>
-                    </div>
-                </div>
-
-                <div
-                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
-                    <div
-                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                        <i class="fas fa-bug text-2xl"></i>
-                    </div>
-                    <h3 class="text-center font-medium mb-2">Metasploit Framework</h3>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="gradient-bg h-2 rounded-full" style="width: 75%"></div>
-                    </div>
-                </div>
-
-                <div
-                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
-                    <div
-                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                        <i class="fas fa-eye text-2xl"></i>
-                    </div>
-                    <h3 class="text-center font-medium mb-2">Snort</h3>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="gradient-bg h-2 rounded-full" style="width: 70%"></div>
-                    </div>
-                </div>
-
-                <div
-                    class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
-                    <div
-                        class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
-                        <i class="fas fa-robot text-2xl"></i>
-                    </div>
-                    <h3 class="text-center font-medium mb-2">SuperAGI</h3>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="gradient-bg h-2 rounded-full" style="width: 80%"></div>
-                    </div>
-                </div>
-
+            <h3 class="text-center font-medium mb-2">Figma</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 85%"></div>
             </div>
         </div>
-    </section>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-pencil-ruler text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">Adobe XD</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 80%"></div>
+            </div>
+        </div>
+
+        <!-- FRONTEND / WEB DEVELOPMENT SKILLS -->
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fab fa-html5 text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">HTML</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 95%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fab fa-css3-alt text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">CSS</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 90%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fab fa-js text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">JavaScript</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 85%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fab fa-js text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">TypeScript</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 80%"></div>
+            </div>
+        </div>
+
+        <!-- BACKEND SKILLS -->
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-server text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">Django</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 80%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-server text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">Flask</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 75%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-server text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">Spring Boot</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 70%"></div>
+            </div>
+        </div>
+
+        <!-- MERN STACK SKILLS -->
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-leaf text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">MongoDB</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 75%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-network-wired text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">Express.js</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 80%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fab fa-react text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">React.js</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 85%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-server text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">Node.js</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 80%"></div>
+            </div>
+        </div>
+
+        <!-- DATABASES -->
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-database text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">MySQL</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 85%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-database text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">PostgreSQL</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 80%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fab fa-google text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">Firebase</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 70%"></div>
+            </div>
+        </div>
+
+        <!-- DEVOPS -->
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fab fa-docker text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">Docker</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 75%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-network-wired text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">Kubernetes</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 70%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fab fa-aws text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">AWS</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 75%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-project-diagram text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">CI/CD Pipelines</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 70%"></div>
+            </div>
+        </div>
+
+        <!-- AI / ML / DL -->
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-robot text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">Artificial Intelligence (AI)</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 85%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-brain text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">Machine Learning (ML)</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 85%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-cogs text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">Deep Learning (DL)</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 80%"></div>
+            </div>
+        </div>
+
+        <!-- PROGRAMMING LANGUAGES -->
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fab fa-python text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">Python</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 90%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fab fa-java text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">Java</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 85%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-c text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">C</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 80%"></div>
+            </div>
+        </div>
+
+        <div
+            class="skill-item p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 animated-section">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-c text-2xl"></i>
+            </div>
+            <h3 class="text-center font-medium mb-2">C++</h3>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="gradient-bg h-2 rounded-full" style="width: 80%"></div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Projects Section -->
     <section id="projects" class="py-20 px-6 bg-gray-50">
@@ -537,13 +822,15 @@
                         </div>
                         <h3 class="text-xl font-bold mb-2">Fake News Detection</h3>
                         <p class="text-gray-600 mb-4">
-                            A machine learning project leveraging NLP techniques to classify fake news using scikit-learn.
-                            Built with Python, trained on the LIAR dataset to identify misinformation from real statements.
+                            A machine learning project leveraging NLP techniques to classify fake news using
+                            scikit-learn.
+                            Built with Python, trained on the LIAR dataset to identify misinformation from real
+                            statements.
                         </p>
                         <div class="flex space-x-3">
                             <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
-                            <a href="https://github.com/Abhishek-09-Tomar/Data-Science-with-AI-and-ML.git" target="_blank"
-                                class="text-sm gradient-text font-medium">Source Code</a>
+                            <a href="https://github.com/Abhishek-09-Tomar/Data-Science-with-AI-and-ML.git"
+                                target="_blank" class="text-sm gradient-text font-medium">Source Code</a>
                         </div>
                     </div>
                 </div>
@@ -563,13 +850,14 @@
                         </div>
                         <h3 class="text-xl font-bold mb-2">Spam Mail Detection</h3>
                         <p class="text-gray-600 mb-4">
-                            A machine learning-based spam email classifier built with Python. Utilizes natural language processing and
+                            A machine learning-based spam email classifier built with Python. Utilizes natural language
+                            processing and
                             Naive Bayes algorithm to detect and filter spam messages from legitimate emails.
                         </p>
                         <div class="flex space-x-3">
                             <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
-                            <a href="https://github.com/Abhishek-09-Tomar/Data-Science-with-AI-and-ML.git" target="_blank"
-                                class="text-sm gradient-text font-medium">Source Code</a>
+                            <a href="https://github.com/Abhishek-09-Tomar/Data-Science-with-AI-and-ML.git"
+                                target="_blank" class="text-sm gradient-text font-medium">Source Code</a>
                         </div>
                     </div>
                 </div>
@@ -588,14 +876,16 @@
                             <span class="text-sm px-2 py-1 bg-indigo-100 text-indigo-800 rounded">HTML/CSS/JS</span>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Library Management System</h3>
-                        <p class="text-gray-600 mb-4">A full-stack Java-based Library Management System integrating a responsive
+                        <p class="text-gray-600 mb-4">A full-stack Java-based Library Management System integrating a
+                            responsive
                             frontend
-                            (HTML, CSS, JS, Bootstrap) with secure MySQL backend and Maven for build automation. Includes features like
+                            (HTML, CSS, JS, Bootstrap) with secure MySQL backend and Maven for build automation.
+                            Includes features like
                             user login, book/member management, and insightful reports.</p>
                         <div class="flex space-x-3">
                             <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
-                            <a href="https://github.com/Abhishek-09-Tomar/Library-Mangement-System-Using-Java.git" target="_blank"
-                                class="text-sm gradient-text font-medium">Source Code</a>
+                            <a href="https://github.com/Abhishek-09-Tomar/Library-Mangement-System-Using-Java.git"
+                                target="_blank" class="text-sm gradient-text font-medium">Source Code</a>
                         </div>
                     </div>
                 </div>
@@ -762,89 +1052,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md animated-section">
-                    <div class="relative overflow-hidden h-48">
-                        <img src="Super-AGI-1.jpg" alt="Upcoming AI-based project teaser visual"
-                            class="w-full h-full object-cover transition duration-500 hover:scale-105">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex space-x-2 mb-3">
-                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">Coming Soon</span>
-                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded">AI/ML</span>
-                            <span class="text-sm px-2 py-1 bg-indigo-100 text-indigo-800 rounded">Cybersecurity</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">SuperAGI-Powered Agent</h3>
-                        <p class="text-gray-600 mb-4">A future-ready AI agent system blending SuperAGI and
-                            cybersecurity, aimed at
-                            autonomous decision-making and intelligent task execution.</p>
-                        <div class="flex space-x-3">
-                            <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
-                            <a href="#" class="text-sm gradient-text font-medium">Source Code</a>
-                        </div>
-                        <div class="flex space-x-3">
-                            <span class="text-sm text-gray-400 italic">Launching Soon...</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md animated-section">
-                    <div class="relative overflow-hidden h-48">
-                        <img src="AetheraAI.jpg" alt="Aethera AI – Emotionally intelligent virtual companion"
-                            class="w-full h-full object-cover transition duration-500 hover:scale-105">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex space-x-2 mb-3">
-                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">Coming Soon</span>
-                            <span class="text-sm px-2 py-1 bg-pink-100 text-pink-800 rounded">Emotional AI</span>
-                            <span class="text-sm px-2 py-1 bg-blue-100 text-blue-800 rounded">Personal Growth</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Aethera AI</h3>
-                        <p class="text-gray-600 mb-4">An emotionally intelligent AI companion that evolves with you —
-                            offering
-                            empathetic support and personalized roadmaps across emotional, mental, physical, and
-                            financial well-being.
-                        </p>
-                        <div class="flex space-x-3">
-                            <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
-                            <a href="#" class="text-sm gradient-text font-medium">Source Code</a>
-                        </div>
-                        <div class="flex space-x-3">
-                            <span class="text-sm text-gray-400 italic">Launching Soon...</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md animated-section">
-                    <div class="relative overflow-hidden h-48">
-                        <img src="SentinelAI.jpg" alt="SentinelAI – Autonomous Cyber Defense System"
-                            class="w-full h-full object-cover transition duration-500 hover:scale-105">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex space-x-2 mb-3">
-                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded">Coming Soon</span>
-                            <span class="text-sm px-2 py-1 bg-red-100 text-red-800 rounded">Cybersecurity</span>
-                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded">AI/ML</span>
-                            <span class="text-sm px-2 py-1 bg-gray-100 text-gray-800 rounded">OSINT</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">SentinelAI</h3>
-                        <p class="text-gray-600 mb-4">An autonomous AI-driven system to detect, analyze, and respond to
-                            cyberattacks in
-                            real time using OSINT, ML, and automation — built for next-gen digital defense.</p>
-                        <div class="flex space-x-3">
-                            <a href="#" class="text-sm gradient-text font-medium">Live Demo</a>
-                            <a href="#" class="text-sm gradient-text font-medium">Source Code</a>
-                        </div>
-                        <div class="flex space-x-3">
-                            <span class="text-sm text-gray-400 italic">Launching Soon...</span>
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
         </div>
     </section>
@@ -1122,7 +1329,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-medium">Phone</h4>
-                                    <p class="text-gray-600">+91 XXXXX-XXXXX</p>
+                                    <p class="text-gray-600">+91 xxxx-xxxx-xx</p>
                                 </div>
                             </div>
                         </div>
@@ -1143,7 +1350,7 @@
                                 class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:text-white hover:bg-blue-400 transition duration-300">
                                 <i class="fab fa-twitter text-xl"></i>
                             </a>
-                            <a href="https://discord.com/invite/bNfDcN2t"
+                            <a href="https://codolio.com/profile/iamagoodboy"
                                 class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 hover:text-white hover:bg-pink-500 transition duration-300">
                                 <i class="fab fa-dribbble text-xl"></i>
                             </a>
@@ -1168,31 +1375,31 @@
                 </p>
 
                 <div class="flex justify-center space-x-6 mb-8">
-                    <a href="https://github.com/Abhishek-09-Tomar"
+                    <a href="https://github.com/Abhishek-09-Tomar" target="_blank"
                         class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition duration-300">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/abhishek-tomar-7aa29127b/"
+                    <a href="https://www.linkedin.com/in/abhishek-tomar-7aa29127b/" target="_blank"
                         class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition duration-300">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="https://x.com/AbhishekTo70974"
+                    <a href="https://x.com/AbhishekTo70974" target="_blank"
                         class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition duration-300">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="https://discord.com/invite/bNfDcN2t"
+                    <a href="https://codolio.com/profile/iamagoodboy" target="_blank"
                         class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition duration-300">
                         <i class="fab fa-dribbble"></i>
                     </a>
                 </div>
 
                 <div class="flex justify-center space-x-6 mb-8">
-                    <a href="#home" class="hover:underline">Home</a>
-                    <a href="#about" class="hover:underline">About</a>
-                    <a href="#skills" class="hover:underline">Skills</a>
-                    <a href="#projects" class="hover:underline">Projects</a>
-                    <a href="#experience" class="hover:underline">Experience</a>
-                    <a href="#contact" class="hover:underline">Contact</a>
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#contact">Contact</a>
                 </div>
 
                 <p class="text-sm">
@@ -1251,33 +1458,39 @@
             contactForm.reset();
         });
 
-        // Animation on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Default dark mode
+            document.body.classList.add('dark');
+
+            // Dark Mode Toggle
+            const darkModeToggle = document.createElement('div');
+            darkModeToggle.className = 'dark-mode-toggle';
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon because dark mode is active
+
+            darkModeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark');
+                if (document.body.classList.contains('dark')) {
+                    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                } else {
+                    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
                 }
             });
-        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.animated-section').forEach(section => {
-            observer.observe(section);
+            document.body.appendChild(darkModeToggle);
+
+            // Animation on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animated-section').forEach(section => {
+                observer.observe(section);
+            });
         });
-
-        // Dark mode toggle (can be implemented with localStorage)
-        // This is just a placeholder functionality
-        const darkModeToggle = document.createElement('button');
-        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        darkModeToggle.className = 'fixed bottom-6 right-6 w-12 h-12 rounded-full gradient-bg text-white flex items-center justify-center shadow-xl z-50';
-        darkModeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark');
-        });
-
-        document.body.appendChild(darkModeToggle);
     </script>
 </body>
-
 </html>
-
-
-
