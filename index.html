@@ -2567,28 +2567,7 @@
                         icon.classList.add('social-glow', 'social-clicked'); // Glow stays after click
                     });
                 });
-
-
-                // add firbase for analytics
-                import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-                import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
-                import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
-
-                const firebaseConfig = {
-                    apiKey: "AIzaSyAe651Jlv4xJ0SdtMvFx37lkyWaeAWyfog",
-                    authDomain: "portfoliowebsitetomar.firebaseapp.com",
-                    databaseURL: "https://portfoliowebsitetomar-default-rtdb.asia-southeast1.firebasedatabase.app",
-                    projectId: "portfoliowebsitetomar",
-                    storageBucket: "portfoliowebsitetomar.appspot.com",
-                    messagingSenderId: "1003553820481",
-                    appId: "1:1003553820481:web:980a0512a5a167049c5bc0",
-                    measurementId: "G-0Z07ZCJSGX"
-                };
-
-                const app = initializeApp(firebaseConfig);
-                const db = getDatabase(app);
-                const analytics = getAnalytics(app);
-                set(ref(db, 'test/message'), 'Hello Abhishek! Firebase is connected.');
             </script>
 </body>
 </html>
+
