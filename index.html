@@ -266,6 +266,60 @@
             color: #e0e0e0;
         }
 
+        /* profile hover effect*/
+        /* Rotating Gradient Background Effect on Hover */
+        #profile-container>div {
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        #profile-container:hover>div::before {
+            content: "";
+            position: absolute;
+            inset: -6px;
+            /* space around the profile */
+            border-radius: 50%;
+            background: conic-gradient(from 0deg,
+                    #3a86ff,
+                    #8338ec,
+                    #ff6b6b,
+                    #f7b32b,
+                    #3a86ff);
+            filter: blur(10px);
+            z-index: 1;
+            animation: rotateGradient 8s linear infinite, glowPulse 2.5s ease-in-out infinite;
+        }
+
+        /* Keep the inner image above the hover effect */
+        #profile-container>div>div {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Gradient Rotation */
+        @keyframes rotateGradient {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Glowing Pulse Effect */
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(58, 134, 255, 0.5), 0 0 40px rgba(255, 107, 107, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 35px rgba(58, 134, 255, 0.8), 0 0 60px rgba(255, 107, 107, 0.5);
+            }
+        }
+
         /* Footer links hover effect */
         footer a {
             position: relative;
@@ -327,15 +381,6 @@
 
         .animate-rotate-border {
             animation: rotate-border 8s linear infinite;
-        }
-
-        /* Smooth 3D tilt animation */
-        #profile-container {
-            perspective: 1000px;
-        }
-
-        #profile-container:hover #profile-image {
-            transform: scale(1.07) translateY(-10px);
         }
 
         /* Footer css text styles */
@@ -500,6 +545,67 @@
                 height: 38px;
             }
         }
+
+        /* About me image hover effect styles */
+        /* About Me Image Hover Gradient Border */
+        #about-container::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        #about-container:hover::before {
+            opacity: 1;
+            padding: 6px;
+            /* thickness of the gradient border */
+            background: conic-gradient(from 0deg,
+                    #3a86ff,
+                    #8338ec,
+                    #ff6b6b,
+                    #f7b32b,
+                    #3a86ff);
+            border-radius: 50%;
+            filter: blur(12px);
+            animation: rotateGradient 8s linear infinite, glowPulse 2.5s ease-in-out infinite;
+        }
+
+        /* Keep the inner image completely untouched */
+        #about-container img {
+            position: relative;
+            z-index: 2;
+            border-radius: 50%;
+            /* ensures image stays circular */
+        }
+
+        /* Gradient Rotation Animation */
+        @keyframes rotateGradient {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Glowing Pulse Animation */
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(58, 134, 255, 0.5), 0 0 40px rgba(255, 107, 107, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 35px rgba(58, 134, 255, 0.8), 0 0 60px rgba(255, 107, 107, 0.5);
+            }
+        }
+
 
         /* About me talwind custom styles*/
         @keyframes rotate-border {
@@ -872,6 +978,53 @@
 
 <body class="bg-white dark:bg-gray-950 text-gray-800">
 
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="mobile-menu fixed inset-0 z-50 flex flex-col items-center justify-center p-6 transform -translate-y-full overflow-hidden">
+        <div
+            class="absolute inset-0 bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600 animate-gradient-move blur-3xl opacity-40 pointer-events-none">
+        </div>
+        <div class="absolute inset-0 bg-white dark:bg-gray-950 opacity-95 backdrop-blur-md"></div>
+
+        <div class="absolute top-4 right-4 flex items-center space-x-3 z-50">
+            <button id="close-menu-button"
+                class="w-14 h-14 flex items-center justify-center bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full shadow-xl">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+
+        <nav class="flex flex-col items-center space-y-6 relative z-10">
+            <a href="#home" class="menu-link">Home</a>
+            <a href="#about" class="menu-link">About</a>
+            <a href="#skills" class="menu-link">Skills</a>
+            <a href="#projects" class="menu-link">Projects</a>
+            <a href="#coding-profiles" class="menu-link">Coding Profiles</a>
+            <a href="#experience" class="menu-link">Experience</a>
+            <a href="#contact" class="menu-link">Contact</a>
+            <a href="Abhishek_Tomar_Resume.pdf" download id="download-resume-mobile" class="menu-link">Resume</a>
+            <a href="#blog" class="menu-link">Blog</a>
+        </nav>
+    </div>
+
+    <!-- Resume Thank You Modal -->
+    <div id="resume-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-300 ease-out">
+        <div id="resume-modal-content"
+            class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center transform scale-95 opacity-0 transition-all duration-500 ease-out">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Thank You for Your Interest!</h2>
+            <p class="text-gray-600 mb-6">
+                It truly means a lot that you took the time to check out my work.<br>
+                I appreciate you!
+            </p>
+            <button id="close-resume-modal"
+                class="px-6 py-3 bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95 transition duration-300 ease-out focus:outline-none relative overflow-hidden">
+                <span class="relative z-10">I Appreciate You 😊 Abhishek</span>
+                <span
+                    class="absolute inset-0 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 opacity-0 hover:opacity-30 rounded-full blur-lg transition duration-500 ease-out"></span>
+            </button>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <header class="fixed w-full z-50 bg-white shadow-sm">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -921,34 +1074,6 @@
         </div>
     </header>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu"
-        class="mobile-menu fixed inset-0 z-50 flex flex-col items-center justify-center p-6 transform -translate-y-full overflow-hidden">
-        <div
-            class="absolute inset-0 bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600 animate-gradient-move blur-3xl opacity-40 pointer-events-none">
-        </div>
-        <div class="absolute inset-0 bg-white dark:bg-gray-950 opacity-95 backdrop-blur-md"></div>
-
-        <div class="absolute top-4 right-4 flex items-center space-x-3 z-50">
-            <button id="close-menu-button"
-                class="w-14 h-14 flex items-center justify-center bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full shadow-xl">
-                <i class="fas fa-times text-2xl"></i>
-            </button>
-        </div>
-
-        <nav class="flex flex-col items-center space-y-6 relative z-10">
-            <a href="#home" class="menu-link">Home</a>
-            <a href="#about" class="menu-link">About</a>
-            <a href="#skills" class="menu-link">Skills</a>
-            <a href="#projects" class="menu-link">Projects</a>
-            <a href="#coding-profiles" class="menu-link">Coding Profiles</a>
-            <a href="#experience" class="menu-link">Experience</a>
-            <a href="#contact" class="menu-link">Contact</a>
-            <a href="Abhishek_Tomar_Resume.pdf" download id="download-resume-mobile" class="menu-link">Resume</a>
-            <a href="#blog" class="menu-link">Blog</a>
-        </nav>
-    </div>
-
     <!-- Hero Section -->
     <section id="home" class="pt-32 pb-20 px-6">
         <div class="container mx-auto">
@@ -978,18 +1103,15 @@
                     </div>
                 </div>
 
-                <!-- Profile Image -->
+                <!-- Profile Image (Static) -->
                 <div class="md:w-1/2 flex flex-col items-center animated-section">
-                    <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 group" id="profile-container">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96" id="profile-container">
                         <div
-                            class="absolute inset-0 rounded-full p-[4px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600 animate-rotate-border transition-all duration-500 ease-out transform group-hover:scale-105 group-hover:shadow-[0_0_60px_rgba(255,200,100,0.6)]">
+                            class="absolute inset-0 rounded-full p-[4px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600">
                             <div
-                                class="relative w-full h-full bg-white dark:bg-gray-900 rounded-full overflow-hidden flex items-center justify-center transition-all duration-700 ease-out">
+                                class="relative w-full h-full bg-white dark:bg-gray-900 rounded-full overflow-hidden flex items-center justify-center">
                                 <img src="abhishek.jpg" alt="tomar" id="profile-image"
-                                    class="w-full h-full object-cover rounded-full transition-transform duration-500 ease-out">
-                                <div id="glow-overlay"
-                                    class="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 transition-opacity duration-500 ease-out pointer-events-none">
-                                </div>
+                                    class="w-full h-full object-cover rounded-full">
                             </div>
                         </div>
                     </div>
@@ -997,25 +1119,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Resume Thank You Modal -->
-    <div id="resume-modal"
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 transition-opacity duration-300 ease-out">
-        <div id="resume-modal-content"
-            class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center transform scale-95 opacity-0 transition-all duration-500 ease-out">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800">Thank You for Your Interest!</h2>
-            <p class="text-gray-600 mb-6">
-                It truly means a lot that you took the time to check out my work.<br>
-                I appreciate you!
-            </p>
-            <button id="close-resume-modal"
-                class="px-6 py-3 bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95 transition duration-300 ease-out focus:outline-none relative overflow-hidden">
-                <span class="relative z-10">I Appreciate You 😊 Abhishek</span>
-                <span
-                    class="absolute inset-0 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 opacity-0 hover:opacity-30 rounded-full blur-lg transition duration-500 ease-out"></span>
-            </button>
-        </div>
-    </div>
 
     <!-- About Section -->
     <section id="about" class="py-20 px-6 bg-gray-50 dark:bg-gray-950">
@@ -1036,18 +1139,15 @@
 
             <div class="flex flex-col md:flex-row items-center animated-section">
 
-                <!-- Profile Image with 3D Hover Glow -->
+                <!-- Profile Image (Static) -->
                 <div class="md:w-1/2 mb-10 md:mb-0 flex justify-center">
-                    <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 group" id="about-container">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96" id="about-container">
                         <div
-                            class="absolute inset-0 rounded-full p-[4px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600 animate-rotate-border transition-all duration-700 ease-out transform group-hover:scale-105 group-hover:shadow-[0_0_60px_rgba(255,200,150,0.5)]">
+                            class="absolute inset-0 rounded-full p-[4px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600">
                             <div
-                                class="relative w-full h-full bg-white dark:bg-gray-900 rounded-full overflow-hidden flex items-center justify-center transition-transform duration-700 ease-out">
-                                <img src="Aboutme.jpg" alt="Tomar" id="about-image"
-                                    class="w-full h-full object-cover rounded-full transition-transform duration-700 ease-out">
-                                <div id="about-glow"
-                                    class="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/25 to-transparent opacity-0 transition-opacity duration-700 ease-in-out pointer-events-none">
-                                </div>
+                                class="relative w-full h-full bg-white dark:bg-gray-900 rounded-full overflow-hidden flex items-center justify-center">
+                                <img src="AbhishekTomar.jpg" alt="Tomar" id="about-image"
+                                    class="w-full h-full object-cover rounded-full">
                             </div>
                         </div>
                     </div>
@@ -1059,14 +1159,11 @@
                     <p class="text-gray-600 dark:text-gray-300 mb-6">
                         I’m a Full-Stack Design Engineer passionate about building secure, scalable, and
                         high-performance
-                        web applications that seamlessly integrate advanced AI. From intuitive frontends to robust
-                        backend
-                        systems, I craft end-to-end digital experiences powered by modern frameworks, machine
-                        learning,
+                        web
+                        applications that seamlessly integrate advanced AI. From intuitive frontends to robust backend
+                        systems, I craft end-to-end digital experiences powered by modern frameworks, machine learning,
                         and
-                        agentic architectures. My work bridges the gap between design and engineering — driving
-                        innovation
-                        in autonomous systems, AGI-inspired intelligence, and next-gen user experiences.
+                        agentic architectures.
                     </p>
 
                     <!-- Info Items -->
@@ -1074,7 +1171,7 @@
                         <div class="flex items-center">
                             <div class="relative w-10 h-10 mr-4">
                                 <div
-                                    class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600 animate-rotate-border">
+                                    class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600">
                                     <div
                                         class="w-full h-full bg-white dark:bg-gray-900 rounded-full flex items-center justify-center text-white">
                                         <i class="fas fa-map-marker-alt"></i>
@@ -1087,7 +1184,7 @@
                         <div class="flex items-center">
                             <div class="relative w-10 h-10 mr-4">
                                 <div
-                                    class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600 animate-rotate-border">
+                                    class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600">
                                     <div
                                         class="w-full h-full bg-white dark:bg-gray-900 rounded-full flex items-center justify-center text-white">
                                         <i class="fas fa-envelope"></i>
@@ -1100,7 +1197,7 @@
                         <div class="flex items-center">
                             <div class="relative w-10 h-10 mr-4">
                                 <div
-                                    class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600 animate-rotate-border">
+                                    class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600">
                                     <div
                                         class="w-full h-full bg-white dark:bg-gray-900 rounded-full flex items-center justify-center text-white">
                                         <i class="fas fa-briefcase"></i>
@@ -1115,7 +1212,7 @@
                     <div class="flex space-x-4">
                         <a href="https://github.com/Abhishek-09-Tomar" target="_blank" class="relative w-10 h-10">
                             <div
-                                class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600 animate-rotate-border">
+                                class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600">
                                 <div
                                     class="w-full h-full bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-200 hover:text-white transition duration-300">
                                     <i class="fab fa-github"></i>
@@ -1125,7 +1222,7 @@
                         <a href="https://www.linkedin.com/in/abhishek-tomar-7aa29127b/" target="_blank"
                             class="relative w-10 h-10">
                             <div
-                                class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600 animate-rotate-border">
+                                class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600">
                                 <div
                                     class="w-full h-full bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-200 hover:text-white transition duration-300">
                                     <i class="fab fa-linkedin-in"></i>
@@ -1134,7 +1231,7 @@
                         </a>
                         <a href="https://x.com/AbhishekTo70974" target="_blank" class="relative w-10 h-10">
                             <div
-                                class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600 animate-rotate-border">
+                                class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600">
                                 <div
                                     class="w-full h-full bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-200 hover:text-white transition duration-300">
                                     <i class="fab fa-twitter"></i>
@@ -1143,7 +1240,7 @@
                         </a>
                         <a href="https://codolio.com/profile/iamagoodboy" target="_blank" class="relative w-10 h-10">
                             <div
-                                class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600 animate-rotate-border">
+                                class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-600">
                                 <div
                                     class="w-full h-full bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-200 hover:text-white transition duration-300">
                                     <i class="fab fa-dribbble"></i>
@@ -1151,11 +1248,12 @@
                             </div>
                         </a>
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
+
+
 
     <!-- Skills Section -->
     <section id="skills" class="py-20 px-6 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
@@ -1521,7 +1619,6 @@
                                 <div class="relative overflow-hidden h-48">
                                     <img src="EvergreenEstate.jpg" alt="Evergreen Estate – Real Estate Price Prediction"
                                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-                                    <div class="absolute inset-0 bg-yellow-100 opacity-30"></div>
                                 </div>
                                 <div class="p-6 flex flex-col justify-between flex-1">
                                     <div>
@@ -1564,7 +1661,6 @@
                                 <div class="relative overflow-hidden h-48">
                                     <img src="FakeNewsDetection.jpg" alt="Fake News Detection – NLP & ML Classifier"
                                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-                                    <div class="absolute inset-0 bg-yellow-100 opacity-30"></div>
                                 </div>
                                 <div class="p-6 flex flex-col justify-between flex-1">
                                     <div>
@@ -1606,7 +1702,6 @@
                                 <div class="relative overflow-hidden h-48">
                                     <img src="SpamMailDetection.jpg" alt="Spam Mail Detection – Email Classifier"
                                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-                                    <div class="absolute inset-0 bg-yellow-100 opacity-30"></div>
                                 </div>
                                 <div class="p-6 flex flex-col justify-between flex-1">
                                     <div>
@@ -1653,7 +1748,6 @@
                                 <div class="relative overflow-hidden h-48">
                                     <img src="LibraryManagementSystem.jpg" alt="Library Management System using Java"
                                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-                                    <div class="absolute inset-0 bg-yellow-100 opacity-30"></div>
                                 </div>
                                 <div class="p-6 flex flex-col justify-between flex-1">
                                     <div>
@@ -1699,7 +1793,6 @@
                                 <div class="relative overflow-hidden h-48">
                                     <img src="E-Commerce Dashboard.jpg" alt="E-commerce dashboard interface"
                                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-                                    <div class="absolute inset-0 bg-yellow-100 opacity-30"></div>
                                 </div>
                                 <div class="p-6 flex flex-col justify-between flex-1">
                                     <div>
@@ -1738,7 +1831,6 @@
                                 <div class="relative overflow-hidden h-48">
                                     <img src="TravelPlannerApp.jpg" alt="Travel planner web app"
                                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-                                    <div class="absolute inset-0 bg-yellow-100 opacity-30"></div>
                                 </div>
                                 <div class="p-6 flex flex-col justify-between flex-1">
                                     <div>
@@ -1778,7 +1870,6 @@
                                 <div class="relative overflow-hidden h-48">
                                     <img src="FitnessTracker.jpg" alt="Fitness tracker web app"
                                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-                                    <div class="absolute inset-0 bg-yellow-100 opacity-30"></div>
                                 </div>
                                 <div class="p-6 flex flex-col justify-between flex-1">
                                     <div>
@@ -1817,7 +1908,6 @@
                                 <div class="relative overflow-hidden h-48">
                                     <img src="SocialMediaDashboard.jpg" alt="Social media analytics dashboard"
                                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-                                    <div class="absolute inset-0 bg-yellow-100 opacity-30"></div>
                                 </div>
                                 <div class="p-6 flex flex-col justify-between flex-1">
                                     <div>
@@ -1857,7 +1947,6 @@
                                 <div class="relative overflow-hidden h-48">
                                     <img src="TaskManagementApp.jpg" alt="Task management web app"
                                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-                                    <div class="absolute inset-0 bg-yellow-100 opacity-30"></div>
                                 </div>
                                 <div class="p-6 flex flex-col justify-between flex-1">
                                     <div>
@@ -1896,7 +1985,6 @@
                                 <div class="relative overflow-hidden h-48">
                                     <img src="FoodDeliveryApp.jpg" alt="Food delivery web app"
                                         class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-                                    <div class="absolute inset-0 bg-yellow-100 opacity-30"></div>
                                 </div>
                                 <div class="p-6 flex flex-col justify-between flex-1">
                                     <div>
@@ -2228,9 +2316,9 @@
 
                 // education section
                 const cursorLight = document.getElementById("cursor-light");
-                    document.addEventListener("mousemove", (e) => {
-                        cursorLight.style.transform = `translate(${e.clientX - 160}px, ${e.clientY - 160}px)`;
-                    });
+                document.addEventListener("mousemove", (e) => {
+                    cursorLight.style.transform = `translate(${e.clientX - 160}px, ${e.clientY - 160}px)`;
+                });
 
                 // footer script for newletter
                 async function subscribeNewsletter(event) {
@@ -2334,26 +2422,6 @@
                         console.error(err);
                         alert('Failed to send message. Try again later.');
                     }
-                });
-
-                // interactive 3d glow for profile pictures
-                const container = document.getElementById('profile-container');
-                const image = document.getElementById('profile-image');
-                const glow = document.getElementById('glow-overlay');
-                container.addEventListener('mousemove', (e) => {
-                    const rect = container.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const rotateX = ((y / rect.height) - 0.5) * 20;
-                    const rotateY = ((x / rect.width) - 0.5) * -20;
-                    image.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.07) translateY(-10px)`;
-                    glow.style.opacity = '0.8';
-                    glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.3), transparent 70%)`;
-                });
-
-                container.addEventListener('mouseleave', () => {
-                    image.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
-                    glow.style.opacity = '0';
                 });
 
                 const mobileMenu = document.getElementById('mobile-menu');
@@ -2570,4 +2638,3 @@
             </script>
 </body>
 </html>
-
